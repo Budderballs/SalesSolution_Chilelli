@@ -52,7 +52,7 @@ namespace PresentationProject
                 {
                     Console.WriteLine("Delete: " + c.LastName + ", " + c.FirstName + "? Y/N");
                     string yN = Console.ReadLine().ToLower();
-                    Menu.checkYN(yN);
+                    yN = Menu.checkYN(yN);
                     if (yN == "y")
                     { 
                         removeDupeCust = c;
@@ -84,7 +84,7 @@ namespace PresentationProject
                 Console.WriteLine("Updating :" + updateCust.LastName + ", " + updateCust.FirstName);
                 Console.WriteLine("Update first name Y/N?");
                 string yN = Console.ReadLine().ToLower();
-                Menu.checkYN(yN);
+                yN = Menu.checkYN(yN);
                 if (yN == "y") 
                 {
                     Console.WriteLine("What is the first name? ");
@@ -97,7 +97,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update last name Y/N?");
                 yN = Console.ReadLine().ToLower();
-                Menu.checkYN(yN);
+                yN = Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the last name? ");
@@ -110,7 +110,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update city name Y/N?");
                 yN = Console.ReadLine().ToLower();
-                Menu.checkYN(yN);
+                yN = Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the city name? ");
@@ -118,7 +118,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update country name Y/N?");
                 yN = Console.ReadLine().ToLower();
-                Menu.checkYN(yN);
+                yN = Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the country name? ");
@@ -126,7 +126,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update phone number Y/N?");
                 yN = Console.ReadLine().ToLower();
-                Menu.checkYN(yN);
+                yN = Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the phone number? ");
@@ -141,11 +141,12 @@ namespace PresentationProject
                     Customer updateDupeCust = c;
                     Console.WriteLine("Update: " + c.LastName + ", " + c.FirstName + "? Y/N");
                     string yN = Console.ReadLine().ToLower();
-                    Menu.checkYN(yN);
+                    yN = Menu.checkYN(yN);
                     if (yN == "y")
                     {
                         Console.WriteLine("Update first name Y/N?");
                         yN = Console.ReadLine().ToLower();
+                        yN = Menu.checkYN(yN);
                         if (yN == "y")
                         {
                             Console.WriteLine("What is the first name? ");
@@ -158,7 +159,7 @@ namespace PresentationProject
                         }
                         Console.WriteLine("Update last name Y/N?");
                         yN = Console.ReadLine().ToLower();
-                        Menu.checkYN(yN);
+                        yN = Menu.checkYN(yN);
                         if (yN == "y")
                         {
                             Console.WriteLine("What is the last name? ");
@@ -171,7 +172,7 @@ namespace PresentationProject
                         }
                         Console.WriteLine("Update city name Y/N?");
                         yN = Console.ReadLine().ToLower();
-                        Menu.checkYN(yN);
+                        yN = Menu.checkYN(yN);
                         if (yN == "y")
                         {
                             Console.WriteLine("What is the city name? ");
@@ -179,7 +180,7 @@ namespace PresentationProject
                         }
                         Console.WriteLine("Update country name Y/N?");
                         yN = Console.ReadLine().ToLower();
-                        Menu.checkYN(yN);
+                        yN = Menu.checkYN(yN);
                         if (yN == "y")
                         {
                             Console.WriteLine("What is the country name? ");
@@ -187,17 +188,13 @@ namespace PresentationProject
                         }
                         Console.WriteLine("Update phone number Y/N?");
                         yN = Console.ReadLine().ToLower();
-                        Menu.checkYN(yN);
+                        yN = Menu.checkYN(yN);
                         if (yN == "y")
                         {
                             Console.WriteLine("What is the phone number? ");
                             updateDupeCust.Phone = Console.ReadLine();
                         }
-                        Console.WriteLine(updateDupeCust.FirstName + ", " + updateDupeCust.LastName + "Successfully Updated");
-                    }
-                    else
-                    {
-                        continue;
+                        Console.WriteLine(updateDupeCust.FirstName + ", " + updateDupeCust.LastName + " Successfully Updated");
                     }
                 }
             }

@@ -93,15 +93,14 @@ namespace PresentationProject
                     break;
             }
         }
-        public static string checkYN(string ynCHECK)
+        public static string checkYN(string yN)
         {
-            string check = ynCHECK;
-            while  (check != "y" && check != "n")
+            while  (yN != "y" && yN != "n")
             {
                 Console.WriteLine("Please check your input");
-                check = Console.ReadLine().ToLower();
+                yN = Console.ReadLine();
             }
-            return check;
+            return yN.ToLower();
         }
     }
 }
