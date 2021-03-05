@@ -25,8 +25,18 @@ namespace PresentationProject
                 case 1: //Add Cust
                     Console.WriteLine("First Name: ");
                     string fName = Console.ReadLine();
+                    while (string.IsNullOrWhiteSpace(fName)) 
+                    {
+                        Console.WriteLine("First Name cannot be empty");
+                        fName = Console.ReadLine();
+                    }
                     Console.WriteLine("Last Name: ");
                     string lName = Console.ReadLine();
+                    while (string.IsNullOrWhiteSpace(lName))
+                    {
+                        Console.WriteLine("First Name cannot be empty");
+                        lName = Console.ReadLine();
+                    }
                     Console.WriteLine("City Name: ");
                     string city = Console.ReadLine();
                     Console.WriteLine("Country Name: ");
@@ -38,7 +48,7 @@ namespace PresentationProject
                     if (string.IsNullOrEmpty(pNumber) || string.IsNullOrWhiteSpace(pNumber)) { pNumber = null; }
                     CRUD.addCust(fName, lName, city, country, pNumber);
                     Console.WriteLine(CRUD.showMeEverything());
-                    Console.WriteLine(fName + ", " + lName + "Successfully added");
+                    Console.WriteLine(fName + ", " + lName + " Successfully added");
                     break;
                 case 2: //Delete Cust
                     Console.Write("Enter the Lastname of the Customer you would like to delete: ");
