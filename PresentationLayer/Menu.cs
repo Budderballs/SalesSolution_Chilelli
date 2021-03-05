@@ -34,7 +34,7 @@ namespace PresentationProject
                     string lName = Console.ReadLine();
                     while (string.IsNullOrWhiteSpace(lName))
                     {
-                        Console.WriteLine("First Name cannot be empty");
+                        Console.WriteLine("Last Name cannot be empty");
                         lName = Console.ReadLine();
                     }
                     Console.WriteLine("City Name: ");
