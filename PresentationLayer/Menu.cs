@@ -38,6 +38,7 @@ namespace PresentationProject
                     if (string.IsNullOrEmpty(pNumber) || string.IsNullOrWhiteSpace(pNumber)) { pNumber = null; }
                     CRUD.addCust(fName, lName, city, country, pNumber);
                     Console.WriteLine(CRUD.showMeEverything());
+                    Console.WriteLine(fName + ", " + lName + "Successfully added");
                     break;
                 case 2: //Delete Cust
                     Console.Write("Enter the Lastname of the Customer you would like to delete: ");
@@ -57,11 +58,32 @@ namespace PresentationProject
                     Console.WriteLine(CRUD.findCustByLastName(lName));
                     break;
                 case 5: //Show Cust By Filter
-                    Console.WriteLine("Filter by (L)ast Name or (C)ity?");
+                    Console.WriteLine("Filter by (L)ast Name or (C)ity or (S)tarting Letter of Last Name or (N)one?");
                     string LorC = Console.ReadLine().ToUpper();
-                    Console.WriteLine("Pick a letter (A-Z) to filter by: ");
-                    string filterLetter = Console.ReadLine();
-                    Console.WriteLine(CRUD.showCustByFilter(LorC, filterLetter));
+                    if (LorC == "N")
+                    {
+                        Console.Write("Enter the last name of the customer you wish to find: ");
+                        lName = Console.ReadLine();
+                        Console.WriteLine(CRUD.findCustByLastName(lName));
+                    }
+                    else if (LorC == "L")
+                    {
+                        Console.Write("Enter the last name of the customer you wish to find: ");
+                        lName = Console.ReadLine();
+                        Console.WriteLine(CRUD.showCustByFilter(LorC, lName));
+                    }
+                    else if (LorC == "S")
+                    {
+                        Console.WriteLine("Pick a letter (A-Z) to filter by: ");
+                        string filterLetter = Console.ReadLine();
+                        Console.WriteLine(CRUD.showCustByFilter(LorC, filterLetter));
+                    }
+                    else if (LorC == "C")
+                    {
+                        Console.WriteLine("Pick a City to filter by: ");
+                        string filterLetter = Console.ReadLine();
+                        Console.WriteLine(CRUD.showCustByFilter(LorC, filterLetter));
+                    }
                     break;
                 case 6: //Quit App
                     Environment.Exit(0);
@@ -70,6 +92,16 @@ namespace PresentationProject
                     Console.WriteLine("Incorrect Selection Please Try Again");
                     break;
             }
+        }
+        public static string checkYN(string ynCHECK)
+        {
+            string check = ynCHECK;
+            while  (check != "y" && check != "n")
+            {
+                Console.WriteLine("Please check your input");
+                check = Console.ReadLine().ToLower();
+            }
+            return check;
         }
     }
 }

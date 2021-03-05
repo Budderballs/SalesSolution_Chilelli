@@ -33,7 +33,7 @@ namespace DataProject
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                //entity.HasNoKey();
+                entity.HasKey("Id");
 
                 entity.ToTable("Customer");
 

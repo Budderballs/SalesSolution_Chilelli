@@ -15,7 +15,8 @@ namespace PresentationProject
             StringBuilder sME = new StringBuilder();
             foreach (Customer c in salesContext.Customers)
             {
-                sME.Append("Last Name: " + c.LastName + " | First Name: " + c.FirstName + " | Phone: " + c.Phone + "\n");
+                sME.Append("Last Name: " + c.LastName + " | First Name: " + c.FirstName + " | Phone: " + c.Phone + " | City: " + c.City +
+                    " | Country: " + c.Country + "\n");
             }
             return sME.ToString();
         }
@@ -51,8 +52,9 @@ namespace PresentationProject
                 {
                     Console.WriteLine("Delete: " + c.LastName + ", " + c.FirstName + "? Y/N");
                     string yN = Console.ReadLine().ToLower();
+                    Menu.checkYN(yN);
                     if (yN == "y")
-                    {
+                    { 
                         removeDupeCust = c;
                         salesContext.Customers.Remove(removeDupeCust);
                     }
@@ -70,7 +72,7 @@ namespace PresentationProject
             salesContext.SaveChanges();
         }
         public static void updateCust(string lname)
-        {
+        { 
             int helperInt = 0;
             foreach (Customer c in salesContext.Customers.Where(z => z.LastName.ToLower() == lname.ToLower()))
             {
@@ -82,6 +84,7 @@ namespace PresentationProject
                 Console.WriteLine("Updating :" + updateCust.LastName + ", " + updateCust.FirstName);
                 Console.WriteLine("Update first name Y/N?");
                 string yN = Console.ReadLine().ToLower();
+                Menu.checkYN(yN);
                 if (yN == "y") 
                 {
                     Console.WriteLine("What is the first name? ");
@@ -94,6 +97,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update last name Y/N?");
                 yN = Console.ReadLine().ToLower();
+                Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the last name? ");
@@ -106,6 +110,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update city name Y/N?");
                 yN = Console.ReadLine().ToLower();
+                Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the city name? ");
@@ -113,6 +118,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update country name Y/N?");
                 yN = Console.ReadLine().ToLower();
+                Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the country name? ");
@@ -120,6 +126,7 @@ namespace PresentationProject
                 }
                 Console.WriteLine("Update phone number Y/N?");
                 yN = Console.ReadLine().ToLower();
+                Menu.checkYN(yN);
                 if (yN == "y")
                 {
                     Console.WriteLine("What is the phone number? ");
@@ -128,16 +135,65 @@ namespace PresentationProject
             }
             else if (helperInt > 1)
             {
-                Customer removeDupeCust;
                 Console.WriteLine("Multiple Matches Found");
                 foreach (Customer c in salesContext.Customers.Where(z => z.LastName.ToLower() == lname.ToLower()))
                 {
-                    Console.WriteLine("Delete: " + c.LastName + ", " + c.FirstName + "? Y/N");
+                    Customer updateDupeCust = c;
+                    Console.WriteLine("Update: " + c.LastName + ", " + c.FirstName + "? Y/N");
                     string yN = Console.ReadLine().ToLower();
+                    Menu.checkYN(yN);
                     if (yN == "y")
                     {
-                        removeDupeCust = c;
-                        salesContext.Customers.Remove(removeDupeCust);
+                        Console.WriteLine("Update first name Y/N?");
+                        yN = Console.ReadLine().ToLower();
+                        if (yN == "y")
+                        {
+                            Console.WriteLine("What is the first name? ");
+                            updateDupeCust.FirstName = Console.ReadLine();
+                            while (string.IsNullOrEmpty(updateDupeCust.FirstName))
+                            {
+                                Console.WriteLine("Invalid please enter something");
+                                updateDupeCust.FirstName = Console.ReadLine();
+                            }
+                        }
+                        Console.WriteLine("Update last name Y/N?");
+                        yN = Console.ReadLine().ToLower();
+                        Menu.checkYN(yN);
+                        if (yN == "y")
+                        {
+                            Console.WriteLine("What is the last name? ");
+                            updateDupeCust.LastName = Console.ReadLine();
+                            while (string.IsNullOrEmpty(updateDupeCust.LastName))
+                            {
+                                Console.WriteLine("Invalid please enter something");
+                                updateDupeCust.LastName = Console.ReadLine();
+                            }
+                        }
+                        Console.WriteLine("Update city name Y/N?");
+                        yN = Console.ReadLine().ToLower();
+                        Menu.checkYN(yN);
+                        if (yN == "y")
+                        {
+                            Console.WriteLine("What is the city name? ");
+                            updateDupeCust.City = Console.ReadLine();
+                        }
+                        Console.WriteLine("Update country name Y/N?");
+                        yN = Console.ReadLine().ToLower();
+                        Menu.checkYN(yN);
+                        if (yN == "y")
+                        {
+                            Console.WriteLine("What is the country name? ");
+                            updateDupeCust.Country = Console.ReadLine();
+                        }
+                        Console.WriteLine("Update phone number Y/N?");
+                        yN = Console.ReadLine().ToLower();
+                        Menu.checkYN(yN);
+                        if (yN == "y")
+                        {
+                            Console.WriteLine("What is the phone number? ");
+                            updateDupeCust.Phone = Console.ReadLine();
+                        }
+                        Console.WriteLine(updateDupeCust.FirstName + ", " + updateDupeCust.LastName + "Successfully Updated");
                     }
                     else
                     {
@@ -171,7 +227,7 @@ namespace PresentationProject
         public static string showCustByFilter(string LorC, string filterLetter)
         {
             StringBuilder sCBF = new StringBuilder();
-            if (LorC == "L")
+            if (LorC == "S")
             {
                 foreach (Customer c in salesContext.Customers.Where(z => z.LastName.StartsWith(filterLetter)))
                 {
@@ -181,16 +237,19 @@ namespace PresentationProject
             }
             else if (LorC == "C")
             {
-                foreach (Customer c in salesContext.Customers.Where(z => z.City.StartsWith(filterLetter)))
+                foreach (Customer c in salesContext.Customers.Where(z => z.City.Equals(filterLetter)))
                 {
                     sCBF.Append("Last Name: " + c.LastName + " | First Name: " + c.FirstName + " | Phone: " + c.Phone
                     + " | City: " + c.City + " | Country: " + c.Country + "\n");
                 }
             }
-            else 
+            else if (LorC == "L")
             {
-                sCBF.Append("Dunno yet?");
-                //Ask in Class what mean?
+                foreach (Customer c in salesContext.Customers.Where(z => z.LastName.Equals(filterLetter)))
+                {
+                    sCBF.Append("Last Name: " + c.LastName + " | First Name: " + c.FirstName + " | Phone: " + c.Phone
+                    + " | City: " + c.City + " | Country: " + c.Country + "\n");
+                }
             }
             return sCBF.ToString();
         }

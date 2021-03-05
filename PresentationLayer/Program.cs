@@ -14,7 +14,7 @@ namespace PresentationProject
             while (Open)
             {
                 Menu.menuStrings();
-                int caseNum = Convert.ToInt32(Console.ReadLine());
+                int.TryParse(Console.ReadLine(),out int caseNum);
                 Menu.theSwitch(caseNum);
             }
         }
